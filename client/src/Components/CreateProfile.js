@@ -224,6 +224,7 @@ useEffect(() => {
     <input type="text" id="mobile" name="mobile" placeholder="Mobile" data-coins={15} value={inputs.mobile} onChange={handleInputChange} />
     <label for="profile-pic">Profile Picture:</label>
     <input type="file" id="profile-pic" name="profilePic" accept="image/*" data-coins={5} onChange={handleImageUpload} />
+    <br/><br/>
     <label for="linkedin-link">LinkedIn Link:</label>
     <input type="text" id="linkedin-link" name="linkedinLink" placeholder="LinkedIn Link" data-coins={3} value={inputs.linkedinLink} onChange={handleInputChange} />
     <label for="github-link">GitHub Link:</label>
@@ -231,6 +232,7 @@ useEffect(() => {
     <label for="resume">Resume:</label>
     <input type="file" id="resume" name="resume" placeholder="Resume" accept="application/pdf" data-coins={20} onChange={handleInputChange} />
   </div>
+  
   <div>
     <h3>Education Details</h3>
     <label for="type">Type (School/College):</label>
@@ -264,18 +266,21 @@ useEffect(() => {
         <input type="text" name="companyWebsite" placeholder="Company Website" value={experience.companyWebsite} onChange={(e) => handleInputChange(e, index)} />
         <label for="role">Role:</label>
         <input type="text" name="role" placeholder="Role" value={experience.role} onChange={(e) => handleInputChange(e, index)} />
+        <br/><br/>
         <label for="experienceStartDate">Start Date:</label>
         <input type="text" name="experienceStartDate" placeholder="Start Date" value={experience.experienceStartDate} onChange={(e) => handleInputChange(e, index)} />
         <label for="experienceEndDate">End Date:</label>
         <input type="text" name="experienceEndDate" placeholder="End Date" value={experience.experienceEndDate} onChange={(e) => handleInputChange(e, index)} />
         <label for="coverLetter">Cover Letter:</label>
         <input type="text" name="coverLetter" placeholder="Cover Letter" value={experience.coverLetter} onChange={(e) => handleInputChange(e, index)} />
-        {/* Add delete button for past experience */}
+        
         <button onClick={() => deletePastExperience(index)}>Delete</button>
       </div>
     ))}
+    <br/>
     <button onClick={addPastExperience}>Add Past Experience</button>
   </div>
+  <br/>
   <button onClick={handleSubmit}>Submit</button>
 </div>
 
