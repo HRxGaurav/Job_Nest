@@ -206,9 +206,9 @@ const fetchProfileData = async () => {
   }
 };
 
-useEffect(() => {
-  fetchProfileData();
-}, []);
+// useEffect(() => {
+//   fetchProfileData();
+// }, []);
 
 
 
