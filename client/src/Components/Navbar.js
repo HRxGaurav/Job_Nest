@@ -29,13 +29,12 @@ const Navbar = () => {
     useEffect(() => {
         setName(Cookies.get('username'));
     }, [])
-
     useEffect(() => {
         const checkLoggedIn = async () => {
             try {
                 const userLoggedIn = await loggedIn();
                 setLogged(userLoggedIn === 200);
-
+    
                 if (userLoggedIn === 200) {
                     // Fetch user profile data
                     const response = await fetch(`${process.env.REACT_APP_BACKEND}/get_profile`, {
@@ -45,12 +44,16 @@ const Navbar = () => {
                             'Authorization': `${Cookies.get('token')}`
                         }
                     });
-
+    
                     if (response.ok) {
                         const data = await response.json();
                         // Update the user's coin balance
                         setCoinBalance(data.profile.totalCoins);
-                        setAppliedJobIds(data.profile.appliedJobs)
+                        
+                        // Check if appliedJobIds has changed before updating the state
+                        if (JSON.stringify(data.profile.appliedJobs) !== JSON.stringify(appliedJobIds)) {
+                            setAppliedJobIds(data.profile.appliedJobs);
+                        }
                     } else {
                         console.error('Failed to fetch user profile data');
                     }
@@ -59,9 +62,10 @@ const Navbar = () => {
                 console.error('Error checking user login status:', error);
             }
         };
-
+    
         checkLoggedIn();
-    }, [appliedJobIds]);
+    }, [appliedJobIds]); // Only run the effect if appliedJobIds changes
+    
 
     return (
         <>

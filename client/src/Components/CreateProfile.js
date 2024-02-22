@@ -74,12 +74,12 @@ function CreateProfile() {
   if (value === "") {
     if (inputs[name] !== "" || (inputs.pastExperiences[index]?.[name] !== "")) {
       setTotalCoins(totalCoins - points);
-      setCoinBalance(totalCoins - points);
+      setCoinBalance(coinBalance + totalCoins - points);
     }
   } else {
     if (inputs[name] === "" || (inputs.pastExperiences[index]?.[name] === "")) {
       setTotalCoins(totalCoins + points);
-      setCoinBalance(totalCoins + points);
+      setCoinBalance(coinBalance + totalCoins + points);
     }
   }
 
@@ -122,7 +122,7 @@ const deletePastExperience = (index) => {
       }
     }
     setTotalCoins(totalCoins - deductedPoints);
-    setCoinBalance(totalCoins - deductedPoints);
+    setCoinBalance(coinBalance + totalCoins - deductedPoints);
   
     
     setInputs((prevState) => {
@@ -158,7 +158,7 @@ const handleSubmit = async (e) => {
   }
 
   setTotalCoins(points);
-  setCoinBalance(points);
+  setCoinBalance(coinBalance + points);
 
 
   const updatedInputs = { ...inputs, totalCoins: points };
